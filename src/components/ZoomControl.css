@@ -1,0 +1,57 @@
+/* src/components/ZoomControl.css */
+
+.zoom-control {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.zoom-button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 300;
+    color: #333;
+    user-select: none;
+}
+
+.zoom-button:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.zoom-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.zoom-button span {
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.zoom-in span {
+    font-size: 32px;
+}
+
+.zoom-out span {
+    font-size: 36px;
+    margin-top: -4px;
+}

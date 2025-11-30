@@ -1,0 +1,105 @@
+/* src/components/LayerSelector.css */
+
+.layer-selector {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 18px 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  max-width: 200px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layer-header {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.layer-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+.layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  user-select: none;
+}
+
+.layer-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.layer-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateX(4px);
+}
+
+.layer-item.active .layer-label {
+  color: white;
+}
+
+.layer-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.layer-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  letter-spacing: 0.3px;
+  transition: color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .layer-selector {
+    top: 10px;
+    left: 10px;
+    min-width: 160px;
+    padding: 14px 12px;
+  }
+
+  .layer-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .layer-icon {
+    font-size: 20px;
+  }
+
+  .layer-label {
+    font-size: 13px;
+  }
+}

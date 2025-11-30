@@ -1,0 +1,64 @@
+/* Province Label Styling */
+.province-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, 0.9),
+        -1px -1px 0 rgba(255, 255, 255, 0.9),
+        1px -1px 0 rgba(255, 255, 255, 0.9),
+        -1px 1px 0 rgba(255, 255, 255, 0.9) !important;
+    /* pointer-events: none !important; REMOVED to allow interactions */
+    letter-spacing: 0.2px !important;
+}
+
+.province-label::before {
+    display: none !important;
+}
+
+/* District Label Styling */
+.district-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    font-size: 9px !important;
+    font-weight: 500 !important;
+    color: #444 !important;
+    text-shadow:
+        0.5px 0.5px 0 rgba(255, 255, 255, 0.8),
+        -0.5px -0.5px 0 rgba(255, 255, 255, 0.8),
+        0.5px -0.5px 0 rgba(255, 255, 255, 0.8),
+        -0.5px 0.5px 0 rgba(255, 255, 255, 0.8) !important;
+    /* pointer-events: none !important; REMOVED to allow interactions */
+    letter-spacing: 0.1px !important;
+}
+
+.district-label::before {
+    display: none !important;
+}
+
+/* Leaflet Tooltip Override */
+.leaflet-tooltip {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.leaflet-tooltip::before,
+.leaflet-tooltip::after {
+    display: none !important;
+}
+
+.leaflet-tooltip-top::before,
+.leaflet-tooltip-bottom::before,
+.leaflet-tooltip-left::before,
+.leaflet-tooltip-right::before {
+    display: none !important;
+}
