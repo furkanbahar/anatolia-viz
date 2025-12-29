@@ -128,6 +128,12 @@ anatolia-viz/
 └── vite.config.js       # Vite ayarları
 ```
 
+## Proje'den örnek resimler
+<img width="1919" height="950" alt="Screenshot 2025-12-29 224255" src="https://github.com/user-attachments/assets/15cb3c32-1870-467e-bb76-0345f763fff3" />
+
+<img width="1919" height="930" alt="Screenshot 2025-12-29 224428" src="https://github.com/user-attachments/assets/6954fec8-f251-43d5-bf21-345552bdc8ba" />
+
+
 ## Özellikler Detay
 
 ### IDW Interpolasyon
@@ -167,6 +173,3 @@ GitHub: [github.com/furkanbahar/anatolia-viz](https://github.com/furkanbahar/ana
 - [React](https://react.dev/) - UI kütüphanesi
 - [Esri](https://www.esri.com/) - Uydu görüntüleri
 
----
-
-**Not:** Bu proje eğitim amaçlı geliştirilmiştir.
