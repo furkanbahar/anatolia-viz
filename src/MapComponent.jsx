@@ -16,6 +16,7 @@ import SearchBar from './components/SearchBar';
 import Legend from './components/Legend';
 import ZoomControl from './components/ZoomControl';
 import TemperatureLayer from './components/TemperatureLayer';
+import SatelliteLayer from './components/SatelliteLayer';
 
 import turkeyGeoJSON from './data/turkey_provinces.json';
 import { TURKEY_LOCATIONS } from './data/turkey_locations';
@@ -32,13 +33,15 @@ const LAYER_CONFIG = {
     max: 40,
     min: -10,
     gradient: {
-      0.0: '#0000b4', // deep blue
-      0.2: '#0078ff', // blue
-      0.4: '#00ffff', // cyan
-      0.5: '#ffff00', // yellow
-      0.6: '#ffa000', // orange
-      0.8: '#ff0000', // red
-      1.0: '#8b0000'  // dark red
+      0.0: '#1e3a8a',   // Koyu mavi (soğuk)
+      0.15: '#3b82f6',  // Açık mavi
+      0.3: '#60a5fa',   // Yumuşak mavi
+      0.45: '#a5f3fc',  // Çok açık mavi/turkuaz
+      0.55: '#fde047',  // Yumuşak sarı (ılık)
+      0.7: '#fb923c',   // Yumuşak turuncu
+      0.85: '#f97316',  // Turuncu
+      0.95: '#dc2626',  // Kırmızı (sıcak)
+      1.0: '#991b1b'    // Koyu kırmızı/bordo (çok sıcak)
     }
   },
   apparent_temperature: {
@@ -47,13 +50,15 @@ const LAYER_CONFIG = {
     max: 40,
     min: -10,
     gradient: {
-      0.0: '#0000b4',
-      0.2: '#0078ff',
-      0.4: '#00ffff',
-      0.5: '#ffff00',
-      0.6: '#ffa000',
-      0.8: '#ff0000',
-      1.0: '#8b0000'
+      0.0: '#1e3a8a',   // Koyu mavi (soğuk)
+      0.15: '#3b82f6',  // Açık mavi
+      0.3: '#60a5fa',   // Yumuşak mavi
+      0.45: '#a5f3fc',  // Çok açık mavi/turkuaz
+      0.55: '#fde047',  // Yumuşak sarı (ılık)
+      0.7: '#fb923c',   // Yumuşak turuncu
+      0.85: '#f97316',  // Turuncu
+      0.95: '#dc2626',  // Kırmızı (sıcak)
+      1.0: '#991b1b'    // Koyu kırmızı/bordo (çok sıcak)
     }
   },
   wind_speed_10m: {
@@ -302,6 +307,7 @@ function MapComponent() {
   const [currentUnit, setCurrentUnit] = useState('°C');
   const [hoverInfo, setHoverInfo] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
+  const [satelliteEnabled, setSatelliteEnabled] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -336,7 +342,12 @@ function MapComponent() {
   return (
     <>
       <Logo />
-      <LayerSelector activeLayer={currentLayer} onLayerChange={handleLayerChange} />
+      <LayerSelector
+        activeLayer={currentLayer}
+        onLayerChange={handleLayerChange}
+        satelliteEnabled={satelliteEnabled}
+        onSatelliteToggle={() => setSatelliteEnabled(!satelliteEnabled)}
+      />
       <Legend currentLayer={currentLayer} config={layerConfig} />
       <DetailPanel data={selectedCity} isOpen={!!selectedCity} onClose={() => setSelectedCity(null)} />
       {hoverInfo && !selectedCity && (
@@ -351,11 +362,20 @@ function MapComponent() {
         scrollWheelZoom={true}
         zoomControl={false}
       >
+        {/* Satellite Layer - Shows real terrain, mountains, green areas */}
+        <SatelliteLayer enabled={satelliteEnabled} opacity={0.8} />
+
         <SearchBar onSelect={handleSearchSelect} />
         <ZoomControl />
         <GeoJSON
           data={turkeyGeoJSON}
-          style={{ color: '#333', weight: 1.5, fillOpacity: 0, fillColor: 'transparent' }}
+          style={{
+            color: satelliteEnabled ? '#FF6B35' : '#333',
+            weight: satelliteEnabled ? 2 : 1.5,
+            fillOpacity: 0,
+            fillColor: 'transparent',
+            opacity: satelliteEnabled ? 0.9 : 1
+          }}
           interactive={false}
         />
         <ZoomBasedMarkers weatherData={weatherData} onHover={setHoverInfo} onClick={setSelectedCity} />

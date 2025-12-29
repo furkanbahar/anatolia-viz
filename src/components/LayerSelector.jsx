@@ -3,7 +3,7 @@
 import React from 'react';
 import './LayerSelector.css';
 
-function LayerSelector({ activeLayer, onLayerChange }) {
+function LayerSelector({ activeLayer, onLayerChange, satelliteEnabled, onSatelliteToggle }) {
   const layers = [
     { id: 'temperature_2m', label: 'Sıcaklık', icon: '🌡️' },
     { id: 'apparent_temperature', label: 'Hissedilen', icon: '🔥' },
@@ -22,6 +22,19 @@ function LayerSelector({ activeLayer, onLayerChange }) {
       <div className="layer-header">
         <span className="layer-title">Katmanlar</span>
       </div>
+
+      {/* Satellite Toggle */}
+      <div className="satellite-toggle-container">
+        <div
+          className={`satellite-toggle ${satelliteEnabled ? 'active' : ''}`}
+          onClick={onSatelliteToggle}
+        >
+          <span className="layer-icon">🛰️</span>
+          <span className="layer-label">Uydu Görüntüsü</span>
+          <span className="toggle-indicator">{satelliteEnabled ? '✓' : '○'}</span>
+        </div>
+      </div>
+
       <div className="layer-list">
         {layers.map((layer) => (
           <div
